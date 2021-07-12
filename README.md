@@ -10,7 +10,8 @@ fabric-samples/test-network/
 
 
 # HOW TO RUN THE NETWORK
-**All of these commands must be run inside the directory above**
+**All of these commands must be run inside the directory above**  
+
 ./network.sh up createChannel -c pizzachannel  
 ./network.sh deployCC -c pizzachannel -ccn pizzacc -ccp ../../pizza-cc/ -ccl go
 
@@ -30,6 +31,7 @@ peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.exa
 
 # RUN THIS COMMAND TO SEE EVERY ORDER AND ITS STATUS
 **If the pizza has been delivered, the variable "holder" stores the name of the customer, as it is the end state.**  
+
 peer chaincode query -C pizzachannel -n pizzacc -c '{"Args":["GetAllOrders"]}'
 
 # CREATE NEW PIZZA ORDER
