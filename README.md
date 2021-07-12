@@ -9,8 +9,8 @@ fabric-samples/test-network/
 
 
 
-**HOW TO RUN THE NETWORK**
-# All of these commands must be run inside the directory abov
+# HOW TO RUN THE NETWORK
+**All of these commands must be run inside the directory above**
 ./network.sh up createChannel -c pizzachannel
 ./network.sh deployCC -c pizzachannel -ccn pizzacc -ccp ../../pizza-cc/ -ccl go
 
@@ -28,8 +28,8 @@ export CORE_PEER_ADDRESS=localhost:7051
 
 peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C pizzachannel -n pizzacc --peerAddresses localhost:7051 --tlsRootCertFiles ${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt --peerAddresses localhost:9051 --tlsRootCertFiles ${PWD}/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt -c '{"function":"InitLedger","Args":[]}'
 
-# IN ORDER TO SEE ALL ORDERS RUN THE FOLLOWING COMMAND
-
+# RUN THIS COMMAND TO SEE EVERY ORDER AND ITS STATUS
+**If the pizza has been delivered, the variable "holder" stores the name of the customer, as it is the end state.**
 peer chaincode query -C pizzachannel -n pizzacc -c '{"Args":["GetAllOrders"]}'
 
 # CREATE NEW PIZZA ORDER
@@ -39,3 +39,7 @@ peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.exa
 # RUN THIS COMMAND TO TRANSFER THE ORDER TO THE NEXT PEER
 
 peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C pizzachannel -n pizzacc --peerAddresses localhost:7051 --tlsRootCertFiles ${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt --peerAddresses localhost:9051 --tlsRootCertFiles ${PWD}/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt -c '{"function":"TransferOrder","Args":["9","Delivery guy"]}'
+
+# SEE THE CHANGE BY QUERYING AGAIN THE LEDGER
+
+peer chaincode query -C pizzachannel -n pizzacc -c '{"Args":["GetAllOrders"]}'
