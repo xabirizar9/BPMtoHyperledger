@@ -4,12 +4,6 @@ SPDX-License-Identifier: Apache-2.0
 
 package main
 
-/*
-./network.sh up createChannel
-./network.sh deployCC -ccn pizzacc -ccp ../../pizza-cc/ -ccl go
-
-
-*/
 import (
 	"encoding/json"
 	"fmt"
