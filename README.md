@@ -11,7 +11,7 @@ This should create a new directory inside the current one named "fabric-samples"
 
 Your setup should look like this, for example:
 
-hyperledger-fabric/fabric-samples/
+hyperledger-fabric/fabric-samples/  
 hyperledger-fabric/pizza-cc
 
 Then, go to 
