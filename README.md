@@ -1,7 +1,18 @@
 # BPMtoHyperledger
 
-In order to run this code, you will need to have installed the hyperledger fabric test network.
-This should install in a directory a folder named "fabric-samples". On this same folder, create a new folder where you will save all the chaincode related files (this repository).
+In order to run this code, you will need to have installed the hyperledger fabric test network. For this, run 
+
+curl -sSL https://bit.ly/2ysbOFE | bash -s
+
+in the desired directory.
+
+
+This should create a new directory inside the current one named "fabric-samples". On the folder where you save "fabric-samples", create a new folder where you will save all the chaincode related files (this repository).
+
+Your setup should look like this, for example:
+
+hyperledger-fabric/fabric-samples/
+hyperledger-fabric/pizza-cc
 
 Then, go to 
 
@@ -10,7 +21,7 @@ fabric-samples/test-network/
 
 
 # HOW TO RUN THE NETWORK
-**All of these commands must be run inside the directory above**  
+**All of these commands must be run inside fabric-samples/test-network/**  
 
 ./network.sh up createChannel -c pizzachannel  
 ./network.sh deployCC -c pizzachannel -ccn pizzacc -ccp ../../pizza-cc/ -ccl go
@@ -33,6 +44,9 @@ export CORE_PEER_ADDRESS=localhost:7051
 # INITIALIZE LEDGER
  
 peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C pizzachannel -n pizzacc --peerAddresses localhost:7051 --tlsRootCertFiles ${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt --peerAddresses localhost:9051 --tlsRootCertFiles ${PWD}/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt -c '{"function":"InitLedger","Args":[]}'
+
+peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile ${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem -C pizzachannel -n pizzacc --peerAddresses localhost:7051 --tlsRootCertFiles ${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt --peerAddresses localhost:9051 --tlsRootCertFiles ${PWD}/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt -c '{"function":"InitLedger","Args":[]}'
+
 
 # RUN THIS COMMAND TO SEE EVERY ORDER AND ITS STATUS
 **If the pizza has been delivered, the variable "holder" stores the name of the customer, as it is the end state.**  
